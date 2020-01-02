@@ -1,36 +1,14 @@
-<html>
-  <head>
-    <title>Meme Blog</title>
-  </head>
-<body>
-  <div>
-    <h1><a href="/">Lotus Zhang's Lul Blog</h1>
-      <p>So uh, this is the place where I do Ancient Chinese peoms and shit, Still in developement as you can see. Meh. ._.</p>
-  </div>
-  <div>
-    <p>Published Dec 4th, 2019</p>
-  </div>
-  <br>
-  <div>
-    <h2><a href="/">https://gushiwen.org/</h2>
-      <p>This website contains all the peomy stuff, idk.</p>
-  </div>
-  <div>
-    <p>Publised Dec 1th, 2019</p>
-    <h3>My First Blog-Poem</h3>
-      <p>敕勒川，阴山下，天似穹庐，笼盖四野，天苍苍，野茫茫，风吹草底现牛（🐂）羊（🐏)</p>
-      <p>This poem describes so meone living or seeing a Mongolian Plain. There is a mountain overhead the plains.The sky is like a giant dome overhead,
-        It covers the entirety of the plains. The skyline is massive and the plains seem to never end, and when the wind blows the grass uncovers the
-        sheep and cows that were in the grass.
-      </p>
-  </div>
-{% for post in posts %}
-  <div>
-    <p>published:{{post.published_date}}</p>
-    <h2><a href="">{{post.title}}</a></h2>
-    <p>{{post.text|linebreaksbr}}</p>
-    {{ post }}
-  </div>
-{% endfor %}
-</body>
-</html>
+{% extends 'blog/base.html'%}
+
+  {% block content %}
+            {% for post in posts %}
+              <div class="post">
+                <div class="date">
+                  <p>published:{{post.published_date}}</p>
+                  </div>
+              <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>
+              <p>{{post.text|linebreaksbr}}</p>
+              {{ post }}
+            </div>
+      {% endfor %}
+  {% endblock %}
